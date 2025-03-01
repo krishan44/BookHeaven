@@ -22,5 +22,12 @@ namespace BookHeaven
 
         }
 
+        private void button2_Click(object sender, EventArgs e)
+        {
+           
+            NewOrder newOrder = new NewOrder();
+            newOrder.Show();
+            this.Hide();
+        }
     }
 }
