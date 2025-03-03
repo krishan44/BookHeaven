@@ -16,7 +16,7 @@ namespace BookHeaven
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new AddNewBook());
+            Application.Run(new AddNewStaff());
         }
     }
 }
