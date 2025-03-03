@@ -93,6 +93,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.dataGridView1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "Inventory";
             this.Text = "Inventory";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();

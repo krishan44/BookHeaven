@@ -129,6 +129,7 @@
             this.Controls.Add(this.button2);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.label10);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "Orders";
             this.Text = "Orders";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();

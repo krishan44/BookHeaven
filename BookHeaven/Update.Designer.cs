@@ -307,6 +307,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.label2);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "Update";
             this.Text = "Update Book";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();

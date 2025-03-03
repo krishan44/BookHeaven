@@ -112,6 +112,7 @@
             this.Controls.Add(this.button2);
             this.Controls.Add(this.splitter1);
             this.Controls.Add(this.splitter2);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "NewBook";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "NewBook";

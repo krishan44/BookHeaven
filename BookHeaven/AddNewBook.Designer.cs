@@ -75,7 +75,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(232, 24);
+            this.label2.Location = new System.Drawing.Point(235, 24);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(165, 26);
             this.label2.TabIndex = 47;
@@ -239,7 +239,7 @@
             // button2
             // 
             this.button2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.button2.Location = new System.Drawing.Point(277, 426);
+            this.button2.Location = new System.Drawing.Point(265, 426);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(102, 33);
             this.button2.TabIndex = 66;
@@ -273,6 +273,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.textBox1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "AddNewBook";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "New Book";
