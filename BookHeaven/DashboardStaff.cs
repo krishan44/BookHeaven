@@ -29,5 +29,33 @@ namespace BookHeaven
             newOrder.Show();
             this.Hide();
         }
+
+        private void btnOrders_Click(object sender, EventArgs e)
+        {
+           Orders orders = new Orders();
+            orders.Show();
+            this.Hide();
+        }
+
+        private void btnInventory_Click(object sender, EventArgs e)
+        {
+            Inventory inventory = new Inventory();
+            inventory.Show();
+            this.Hide();
+        }
+
+        private void btnAddCustomer_Click(object sender, EventArgs e)
+        {
+            AddCustomer addCustomer = new AddCustomer();
+            addCustomer.Show();
+            this.Hide();
+        }
+
+        private void btnHistory_Click(object sender, EventArgs e)
+        {
+            History history = new History();
+            history.Show();
+            this.Hide();
+        }
     }
 }

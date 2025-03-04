@@ -40,9 +40,11 @@
             // button1
             // 
             this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.button1.FlatAppearance.BorderSize = 0;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.Location = new System.Drawing.Point(12, 123);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(88, 33);
+            this.button1.Size = new System.Drawing.Size(87, 33);
             this.button1.TabIndex = 15;
             this.button1.Text = "Reports";
             this.button1.UseVisualStyleBackColor = false;
@@ -50,9 +52,11 @@
             // button4
             // 
             this.button4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.button4.FlatAppearance.BorderSize = 0;
+            this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button4.Location = new System.Drawing.Point(12, 182);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(88, 33);
+            this.button4.Size = new System.Drawing.Size(87, 33);
             this.button4.TabIndex = 13;
             this.button4.Text = "Suppliers";
             this.button4.UseVisualStyleBackColor = false;
@@ -60,9 +64,11 @@
             // button3
             // 
             this.button3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.button3.FlatAppearance.BorderSize = 0;
+            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button3.Location = new System.Drawing.Point(12, 68);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(88, 33);
+            this.button3.Size = new System.Drawing.Size(87, 33);
             this.button3.TabIndex = 12;
             this.button3.Text = "Staff";
             this.button3.UseVisualStyleBackColor = false;
@@ -70,9 +76,11 @@
             // button2
             // 
             this.button2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.button2.Location = new System.Drawing.Point(12, 11);
+            this.button2.FlatAppearance.BorderSize = 0;
+            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button2.Location = new System.Drawing.Point(12, 12);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(88, 33);
+            this.button2.Size = new System.Drawing.Size(87, 33);
             this.button2.TabIndex = 11;
             this.button2.Text = "Books";
             this.button2.UseVisualStyleBackColor = false;
@@ -81,13 +89,15 @@
             // 
             this.label1.Location = new System.Drawing.Point(0, -1);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(100, 23);
+            this.label1.Size = new System.Drawing.Size(99, 23);
             this.label1.TabIndex = 10;
             // 
             // button5
             // 
             this.button5.BackColor = System.Drawing.Color.LightCoral;
-            this.button5.Location = new System.Drawing.Point(572, 11);
+            this.button5.FlatAppearance.BorderSize = 0;
+            this.button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button5.Location = new System.Drawing.Point(573, 12);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(75, 23);
             this.button5.TabIndex = 16;
@@ -98,7 +108,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(273, 95);
+            this.label2.Location = new System.Drawing.Point(275, 107);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(190, 24);
             this.label2.TabIndex = 17;
@@ -108,7 +118,8 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(659, 234);
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.ClientSize = new System.Drawing.Size(659, 231);
             this.ControlBox = false;
             this.Controls.Add(this.label2);
             this.Controls.Add(this.button5);
@@ -120,7 +131,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "adminDashboard";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Dashboard";
+            this.Text = "Book Heaven || Book System";
             this.ResumeLayout(false);
             this.PerformLayout();
 

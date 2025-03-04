@@ -117,7 +117,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "Staff";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Staff";
+            this.Text = "Book Heaven || Book System";
             this.ResumeLayout(false);
             this.PerformLayout();
 
