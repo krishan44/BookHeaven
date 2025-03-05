@@ -10,24 +10,24 @@ using System.Windows.Forms;
 
 namespace BookHeaven
 {
-    public partial class NewBook : Form
+    public partial class SupplierMain : Form
     {
-        public NewBook()
+        public SupplierMain()
         {
             InitializeComponent();
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            AddNewBook addNewBook = new AddNewBook();
-            addNewBook.Show();
+            Supplier supplier = new Supplier();
+            supplier.Show();
             this.Hide();
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            UpdateBook updateBook = new UpdateBook();
-            updateBook.Show();
+            UpdateSupplier updateSupplier = new UpdateSupplier();
+            updateSupplier.Show();
             this.Hide();
         }
     }

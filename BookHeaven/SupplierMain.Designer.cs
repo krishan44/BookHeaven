@@ -1,6 +1,6 @@
 ﻿namespace BookHeaven
 {
-    partial class ReportMain
+    partial class SupplierMain
     {
         /// <summary>
         /// Required designer variable.
@@ -38,72 +38,75 @@
             // 
             // splitter1
             // 
-            this.splitter1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.splitter1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.splitter1.Enabled = false;
             this.splitter1.Location = new System.Drawing.Point(0, 0);
             this.splitter1.Name = "splitter1";
-            this.splitter1.Size = new System.Drawing.Size(257, 450);
-            this.splitter1.TabIndex = 0;
+            this.splitter1.Size = new System.Drawing.Size(244, 450);
+            this.splitter1.TabIndex = 1;
             this.splitter1.TabStop = false;
             // 
             // splitter2
             // 
-            this.splitter2.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.splitter2.Location = new System.Drawing.Point(257, 0);
+            this.splitter2.BackColor = System.Drawing.Color.SkyBlue;
+            this.splitter2.Enabled = false;
+            this.splitter2.Location = new System.Drawing.Point(244, 0);
             this.splitter2.Name = "splitter2";
-            this.splitter2.Size = new System.Drawing.Size(265, 450);
-            this.splitter2.TabIndex = 1;
+            this.splitter2.Size = new System.Drawing.Size(275, 450);
+            this.splitter2.TabIndex = 2;
             this.splitter2.TabStop = false;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.label2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.label2.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.Black;
-            this.label2.Location = new System.Drawing.Point(60, 150);
+            this.label2.Location = new System.Drawing.Point(50, 138);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(142, 33);
-            this.label2.TabIndex = 53;
-            this.label2.Text = "Sales Report";
+            this.label2.Size = new System.Drawing.Size(151, 33);
+            this.label2.TabIndex = 54;
+            this.label2.Text = "Add Supplier";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.label2.UseCompatibleTextRendering = true;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.label1.BackColor = System.Drawing.Color.SkyBlue;
             this.label1.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.Black;
-            this.label1.Location = new System.Drawing.Point(349, 150);
+            this.label1.Location = new System.Drawing.Point(307, 138);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(113, 33);
-            this.label1.TabIndex = 54;
-            this.label1.Text = "Inventory";
+            this.label1.Size = new System.Drawing.Size(182, 33);
+            this.label1.TabIndex = 55;
+            this.label1.Text = "Update Supplier";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.label1.UseCompatibleTextRendering = true;
             // 
             // button2
             // 
-            this.button2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
-            this.button2.Location = new System.Drawing.Point(84, 232);
+            this.button2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.button2.Location = new System.Drawing.Point(77, 207);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(88, 33);
-            this.button2.TabIndex = 55;
-            this.button2.Text = "Go";
+            this.button2.TabIndex = 56;
+            this.button2.Text = "Add";
             this.button2.UseVisualStyleBackColor = false;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // button1
             // 
-            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
-            this.button1.Location = new System.Drawing.Point(360, 232);
+            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.button1.Location = new System.Drawing.Point(345, 207);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(88, 33);
-            this.button1.TabIndex = 56;
-            this.button1.Text = "Go";
+            this.button1.TabIndex = 57;
+            this.button1.Text = "Update";
             this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // ReportMain
+            // SupplierMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -116,7 +119,7 @@
             this.Controls.Add(this.splitter2);
             this.Controls.Add(this.splitter1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Name = "ReportMain";
+            this.Name = "SupplierMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Book Heaven || Book System";
             this.ResumeLayout(false);

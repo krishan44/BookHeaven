@@ -16,5 +16,12 @@ namespace BookHeaven
         {
             InitializeComponent();
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            AdminInventory adminInventory = new AdminInventory();
+            adminInventory.Show();
+            this.Hide();
+        }
     }
 }
