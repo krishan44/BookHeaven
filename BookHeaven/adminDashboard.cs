@@ -37,5 +37,12 @@ namespace BookHeaven
             reportMain.Show();
             this.Hide();
         }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            SupplierMain supplierMain = new SupplierMain();
+            supplierMain.Show();
+            this.Hide();
+        }
     }
 }
