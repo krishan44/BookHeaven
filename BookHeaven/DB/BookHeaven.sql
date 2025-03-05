@@ -1,0 +1,71 @@
+CREATE TABLE UserTable (
+    UserID INT PRIMARY KEY,
+    Username VARCHAR(255) UNIQUE NOT NULL,
+    PasswordHash VARCHAR(255) NOT NULL,
+    Role VARCHAR(50) NOT NULL
+);
+
+CREATE TABLE StaffTable (
+    StaffID INT PRIMARY KEY,
+    FullName VARCHAR(255) NOT NULL,
+    Photo TEXT,
+    Email VARCHAR(255) UNIQUE NOT NULL,
+    Gender VARCHAR(10) NOT NULL,
+    PhoneNumber VARCHAR(20) UNIQUE NOT NULL,
+    Address TEXT,
+    UserID INT UNIQUE,
+    FOREIGN KEY (UserID) REFERENCES UserTable(UserID) ON DELETE CASCADE
+);
+
+CREATE TABLE SuppliersTable (
+    SupplierID INT PRIMARY KEY,
+    BusinessName VARCHAR(255) NOT NULL,
+    AgentName VARCHAR(255) NOT NULL,
+    NIC VARCHAR(50) UNIQUE NOT NULL,
+    Email VARCHAR(255) UNIQUE NOT NULL,
+    ContactNumber VARCHAR(20) UNIQUE NOT NULL,
+    Address TEXT
+);
+
+CREATE TABLE BooksTable (
+    BookID INT PRIMARY KEY,
+    Title VARCHAR(255) NOT NULL,
+    BookImage TEXT,
+    Author VARCHAR(255) NOT NULL,
+    Genre VARCHAR(100),
+    ISBN VARCHAR(50) UNIQUE NOT NULL,
+    Price DECIMAL(10,2) NOT NULL,
+    StockQuantity INT NOT NULL DEFAULT 0,
+    SupplierID INT,
+    FOREIGN KEY (SupplierID) REFERENCES SuppliersTable(SupplierID) ON DELETE SET NULL
+);
+
+CREATE TABLE CustomersTable (
+    CustomerID INT PRIMARY KEY,
+    Name VARCHAR(255) NOT NULL,
+    Email VARCHAR(255) UNIQUE NOT NULL,
+    PhoneNumber VARCHAR(20) UNIQUE NOT NULL,
+    Address TEXT
+);
+
+CREATE TABLE SalesTable (
+    SaleID INT PRIMARY KEY,
+    TotalAmount DECIMAL(10,2) NOT NULL,
+    Discount DECIMAL(10,2) DEFAULT 0,
+    SaleDate DATETIME DEFAULT GETDATE(),
+    CustomerID INT,
+    FOREIGN KEY (CustomerID) REFERENCES CustomersTable(CustomerID) ON DELETE SET NULL
+);
+
+CREATE TABLE OrdersTable (
+    OrderID INT PRIMARY KEY,
+    OrderedBook VARCHAR(255) NOT NULL,
+    Author VARCHAR(255) NOT NULL,
+    OrderDate DATETIME DEFAULT GETDATE(),
+    Status VARCHAR(50) NOT NULL,
+    DeliveryType VARCHAR(50) NOT NULL,
+    Total DECIMAL(10,2) NOT NULL,
+    CustomerID INT,
+    FOREIGN KEY (CustomerID) REFERENCES CustomersTable(CustomerID) ON DELETE SET NULL
+);
+
