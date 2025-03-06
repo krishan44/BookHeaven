@@ -16,5 +16,12 @@ namespace BookHeaven
         {
             InitializeComponent();
         }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            loginInfo loginInfo = new loginInfo();
+            loginInfo.Show();
+            this.Hide();
+        }
     }
 }

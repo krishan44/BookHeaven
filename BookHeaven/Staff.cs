@@ -16,5 +16,20 @@ namespace BookHeaven
         {
             InitializeComponent();
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            AddNewStaff addNewStaff = new AddNewStaff();
+            addNewStaff.Show();
+            this.Hide();
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            UpdateStaff updateStaff = new UpdateStaff();
+            updateStaff.Show();
+            this.Hide();
+        }
     }
 }

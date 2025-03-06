@@ -77,6 +77,7 @@
             // splitter1
             // 
             this.splitter1.BackColor = System.Drawing.Color.SkyBlue;
+            this.splitter1.Enabled = false;
             this.splitter1.Location = new System.Drawing.Point(284, 0);
             this.splitter1.Name = "splitter1";
             this.splitter1.Size = new System.Drawing.Size(302, 377);
@@ -86,6 +87,7 @@
             // splitter2
             // 
             this.splitter2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.splitter2.Enabled = false;
             this.splitter2.Location = new System.Drawing.Point(0, 0);
             this.splitter2.Name = "splitter2";
             this.splitter2.Size = new System.Drawing.Size(284, 377);

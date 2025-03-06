@@ -71,7 +71,7 @@
             this.txtBookTitle.Multiline = true;
             this.txtBookTitle.Name = "txtBookTitle";
             this.txtBookTitle.Size = new System.Drawing.Size(200, 38);
-            this.txtBookTitle.TabIndex = 40;
+            this.txtBookTitle.TabIndex = 1;
             // 
             // label2
             // 
@@ -99,7 +99,7 @@
             this.txtAuthor.Location = new System.Drawing.Point(157, 166);
             this.txtAuthor.Name = "txtAuthor";
             this.txtAuthor.Size = new System.Drawing.Size(200, 22);
-            this.txtAuthor.TabIndex = 49;
+            this.txtAuthor.TabIndex = 2;
             // 
             // label4
             // 
@@ -135,7 +135,7 @@
             this.btnUploadCover.Location = new System.Drawing.Point(460, 131);
             this.btnUploadCover.Name = "btnUploadCover";
             this.btnUploadCover.Size = new System.Drawing.Size(102, 33);
-            this.btnUploadCover.TabIndex = 53;
+            this.btnUploadCover.TabIndex = 9;
             this.btnUploadCover.Text = "Upload";
             this.btnUploadCover.UseVisualStyleBackColor = false;
             this.btnUploadCover.Click += new System.EventHandler(this.btnUploadCover_Click);
@@ -146,7 +146,7 @@
             this.txtISBN.Location = new System.Drawing.Point(157, 259);
             this.txtISBN.Name = "txtISBN";
             this.txtISBN.Size = new System.Drawing.Size(200, 22);
-            this.txtISBN.TabIndex = 54;
+            this.txtISBN.TabIndex = 4;
             // 
             // label6
             // 
@@ -176,7 +176,7 @@
             this.txtSupplier.Multiline = true;
             this.txtSupplier.Name = "txtSupplier";
             this.txtSupplier.Size = new System.Drawing.Size(186, 37);
-            this.txtSupplier.TabIndex = 58;
+            this.txtSupplier.TabIndex = 8;
             // 
             // label8
             // 
@@ -194,7 +194,7 @@
             this.txtPrice.Location = new System.Drawing.Point(157, 306);
             this.txtPrice.Name = "txtPrice";
             this.txtPrice.Size = new System.Drawing.Size(61, 22);
-            this.txtPrice.TabIndex = 60;
+            this.txtPrice.TabIndex = 5;
             // 
             // label9
             // 
@@ -208,6 +208,7 @@
             // 
             // cmbGenre
             // 
+            this.cmbGenre.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbGenre.FormattingEnabled = true;
             this.cmbGenre.Items.AddRange(new object[] {
             "--Select--",
@@ -226,7 +227,7 @@
             this.cmbGenre.Location = new System.Drawing.Point(157, 210);
             this.cmbGenre.Name = "cmbGenre";
             this.cmbGenre.Size = new System.Drawing.Size(200, 21);
-            this.cmbGenre.TabIndex = 62;
+            this.cmbGenre.TabIndex = 3;
             // 
             // label10
             // 
@@ -244,14 +245,15 @@
             this.txtStock.Location = new System.Drawing.Point(296, 305);
             this.txtStock.Name = "txtStock";
             this.txtStock.Size = new System.Drawing.Size(61, 22);
-            this.txtStock.TabIndex = 64;
+            this.txtStock.TabIndex = 6;
             // 
             // cmbSupId
             // 
+            this.cmbSupId.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbSupId.Location = new System.Drawing.Point(157, 357);
             this.cmbSupId.Name = "cmbSupId";
             this.cmbSupId.Size = new System.Drawing.Size(133, 21);
-            this.cmbSupId.TabIndex = 68;
+            this.cmbSupId.TabIndex = 7;
             this.cmbSupId.SelectedIndexChanged += new System.EventHandler(this.cmbSupId_SelectedIndexChanged_1);
             // 
             // btnAdd
@@ -260,9 +262,10 @@
             this.btnAdd.Location = new System.Drawing.Point(265, 426);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(102, 33);
-            this.btnAdd.TabIndex = 66;
+            this.btnAdd.TabIndex = 10;
             this.btnAdd.Text = "Add";
             this.btnAdd.UseVisualStyleBackColor = false;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // btnBack
             // 

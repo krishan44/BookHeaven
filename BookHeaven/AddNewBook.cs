@@ -159,5 +159,99 @@ namespace BookHeaven
                 return returnImage;
             }
         }
+
+        private void clearFields()
+        {
+            txtBookTitle.Clear();
+            txtAuthor.Clear();
+            txtPrice.Clear();
+            txtSupplier.Clear();
+            txtStock.Clear();
+            cmbSupId.SelectedIndex = 0;
+            cmbGenre.SelectedIndex = 0;
+            picCover.Image = null;
+            selectedImagePath = null;
+            txtISBN.Clear();
+            btnUploadCover.Location = new Point(btnUploadCover.Location.X, btnUploadCover.Location.Y - 140);
+            isImageUploaded = false; // Set the flag
+        }
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+            string bookID = "";
+
+            try
+            {
+                string query = "SELECT TOP 1 BookId FROM BooksTable ORDER BY BookId DESC";
+                SqlCommand command = new SqlCommand(query, conn);
+
+                conn.Open();
+                object result = command.ExecuteScalar();
+
+                if (result != null && result != DBNull.Value)
+                {
+                    string lastBookID = result.ToString();
+                    string numericPart = lastBookID.Substring(3);
+                    int lastIndex = int.Parse(numericPart);
+                    int newIndex = lastIndex + 1;
+                    bookID = "BK_" + newIndex.ToString("D2");
+                }
+                else
+                {
+                    bookID = "BK_01";
+                }
+
+                string insertQuery = "INSERT INTO BooksTable (BookId, Title, Author, Genre, ISBN, Price, BookImage, StockQuantity, SupplierID) VALUES (@BookId, @Title, @Author, @Genre, @ISBN, @Price, @BookImage, @Stock, @SupplierID)";
+
+                command = new SqlCommand(insertQuery, conn);
+                command.Parameters.AddWithValue("@BookId", bookID);
+                command.Parameters.AddWithValue("@Title", txtBookTitle.Text);
+                command.Parameters.AddWithValue("@Author", txtAuthor.Text);
+                command.Parameters.AddWithValue("@Genre", cmbGenre.SelectedItem.ToString());
+                command.Parameters.AddWithValue("@ISBN", txtISBN.Text);
+                command.Parameters.AddWithValue("@Price", txtPrice.Text);
+                if (picCover.Image != null)
+                {
+                    command.Parameters.AddWithValue("@BookImage", ImageToByteArray(picCover.Image));
+                }
+                else
+                {
+                    command.Parameters.AddWithValue("@BookImage", DBNull.Value);
+                }
+                command.Parameters.AddWithValue("@Stock", txtStock.Text);
+                command.Parameters.AddWithValue("@SupplierID", cmbSupId.SelectedItem.ToString());
+
+                command.ExecuteNonQuery();
+                conn.Close();
+
+                MessageBox.Show("Book added successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                clearFields();
+                if (picCover.Image != null)
+                {
+                    try
+                    {
+                        byte[] imageBytes = ImageToByteArray(picCover.Image);
+                        command.Parameters.AddWithValue("@BookImage", imageBytes);
+                    }
+                    catch (Exception imageEx)
+                    {
+                        MessageBox.Show($"Error converting image: {imageEx.Message}", "Image Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        command.Parameters.AddWithValue("@BookImage", DBNull.Value);
+                    }
+
+                }
+                else
+                {
+                    command.Parameters.AddWithValue("@BookImage", DBNull.Value);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error adding book: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                if (conn.State == System.Data.ConnectionState.Open)
+                {
+                    conn.Close();
+                }
+            }
+        }
     }
 }

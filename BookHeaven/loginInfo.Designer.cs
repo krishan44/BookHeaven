@@ -148,6 +148,7 @@
             this.btnBack.Size = new System.Drawing.Size(35, 32);
             this.btnBack.TabIndex = 142;
             this.btnBack.UseVisualStyleBackColor = false;
+            this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
             // 
             // loginInfo
             // 
