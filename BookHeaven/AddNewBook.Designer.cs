@@ -30,28 +30,28 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AddNewBook));
             this.label1 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtBookTitle = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.txtAuthor = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.picCover = new System.Windows.Forms.PictureBox();
+            this.btnUploadCover = new System.Windows.Forms.Button();
+            this.txtISBN = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
-            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.txtSupplier = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
-            this.textBox6 = new System.Windows.Forms.TextBox();
+            this.txtPrice = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.cmbGenre = new System.Windows.Forms.ComboBox();
             this.label10 = new System.Windows.Forms.Label();
-            this.textBox7 = new System.Windows.Forms.TextBox();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
-            this.button2 = new System.Windows.Forms.Button();
+            this.txtStock = new System.Windows.Forms.TextBox();
+            this.cmbSupId = new System.Windows.Forms.ComboBox();
+            this.btnAdd = new System.Windows.Forms.Button();
             this.btnBack = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picCover)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -64,14 +64,14 @@
             this.label1.TabIndex = 41;
             this.label1.Text = "Book Title";
             // 
-            // textBox1
+            // txtBookTitle
             // 
-            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(157, 102);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(200, 38);
-            this.textBox1.TabIndex = 40;
+            this.txtBookTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtBookTitle.Location = new System.Drawing.Point(157, 102);
+            this.txtBookTitle.Multiline = true;
+            this.txtBookTitle.Name = "txtBookTitle";
+            this.txtBookTitle.Size = new System.Drawing.Size(200, 38);
+            this.txtBookTitle.TabIndex = 40;
             // 
             // label2
             // 
@@ -93,13 +93,13 @@
             this.label3.TabIndex = 48;
             this.label3.Text = "Author";
             // 
-            // textBox2
+            // txtAuthor
             // 
-            this.textBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox2.Location = new System.Drawing.Point(157, 166);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(200, 22);
-            this.textBox2.TabIndex = 49;
+            this.txtAuthor.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtAuthor.Location = new System.Drawing.Point(157, 166);
+            this.txtAuthor.Name = "txtAuthor";
+            this.txtAuthor.Size = new System.Drawing.Size(200, 22);
+            this.txtAuthor.TabIndex = 49;
             // 
             // label4
             // 
@@ -115,37 +115,38 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(447, 92);
+            this.label5.Location = new System.Drawing.Point(456, 92);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(106, 21);
             this.label5.TabIndex = 51;
             this.label5.Text = "Cover Photo";
             // 
-            // pictureBox1
+            // picCover
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(435, 116);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(145, 151);
-            this.pictureBox1.TabIndex = 52;
-            this.pictureBox1.TabStop = false;
+            this.picCover.Location = new System.Drawing.Point(435, 116);
+            this.picCover.Name = "picCover";
+            this.picCover.Size = new System.Drawing.Size(145, 151);
+            this.picCover.TabIndex = 52;
+            this.picCover.TabStop = false;
             // 
-            // button1
+            // btnUploadCover
             // 
-            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.button1.Location = new System.Drawing.Point(451, 128);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(102, 33);
-            this.button1.TabIndex = 53;
-            this.button1.Text = "Upload";
-            this.button1.UseVisualStyleBackColor = false;
+            this.btnUploadCover.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.btnUploadCover.Location = new System.Drawing.Point(460, 131);
+            this.btnUploadCover.Name = "btnUploadCover";
+            this.btnUploadCover.Size = new System.Drawing.Size(102, 33);
+            this.btnUploadCover.TabIndex = 53;
+            this.btnUploadCover.Text = "Upload";
+            this.btnUploadCover.UseVisualStyleBackColor = false;
+            this.btnUploadCover.Click += new System.EventHandler(this.btnUploadCover_Click);
             // 
-            // textBox3
+            // txtISBN
             // 
-            this.textBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox3.Location = new System.Drawing.Point(157, 259);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(200, 22);
-            this.textBox3.TabIndex = 54;
+            this.txtISBN.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtISBN.Location = new System.Drawing.Point(157, 259);
+            this.txtISBN.Name = "txtISBN";
+            this.txtISBN.Size = new System.Drawing.Size(200, 22);
+            this.txtISBN.TabIndex = 54;
             // 
             // label6
             // 
@@ -167,14 +168,15 @@
             this.label7.TabIndex = 56;
             this.label7.Text = "Supplier";
             // 
-            // textBox5
+            // txtSupplier
             // 
-            this.textBox5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox5.Location = new System.Drawing.Point(394, 354);
-            this.textBox5.Multiline = true;
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(186, 37);
-            this.textBox5.TabIndex = 58;
+            this.txtSupplier.Enabled = false;
+            this.txtSupplier.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtSupplier.Location = new System.Drawing.Point(394, 354);
+            this.txtSupplier.Multiline = true;
+            this.txtSupplier.Name = "txtSupplier";
+            this.txtSupplier.Size = new System.Drawing.Size(186, 37);
+            this.txtSupplier.TabIndex = 58;
             // 
             // label8
             // 
@@ -186,13 +188,13 @@
             this.label8.TabIndex = 59;
             this.label8.Text = "Price";
             // 
-            // textBox6
+            // txtPrice
             // 
-            this.textBox6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox6.Location = new System.Drawing.Point(157, 306);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(61, 22);
-            this.textBox6.TabIndex = 60;
+            this.txtPrice.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtPrice.Location = new System.Drawing.Point(157, 306);
+            this.txtPrice.Name = "txtPrice";
+            this.txtPrice.Size = new System.Drawing.Size(61, 22);
+            this.txtPrice.TabIndex = 60;
             // 
             // label9
             // 
@@ -204,13 +206,27 @@
             this.label9.TabIndex = 61;
             this.label9.Text = "Genre";
             // 
-            // comboBox1
+            // cmbGenre
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(157, 210);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(200, 21);
-            this.comboBox1.TabIndex = 62;
+            this.cmbGenre.FormattingEnabled = true;
+            this.cmbGenre.Items.AddRange(new object[] {
+            "--Select--",
+            "Fantasy",
+            "Science Fiction (Sci-Fi)",
+            "Mystery",
+            "Thriller",
+            "Horror",
+            "Romance",
+            "Historical",
+            "Fiction",
+            "Adventure",
+            "Dystopian",
+            "Magical ",
+            "Realism"});
+            this.cmbGenre.Location = new System.Drawing.Point(157, 210);
+            this.cmbGenre.Name = "cmbGenre";
+            this.cmbGenre.Size = new System.Drawing.Size(200, 21);
+            this.cmbGenre.TabIndex = 62;
             // 
             // label10
             // 
@@ -222,31 +238,31 @@
             this.label10.TabIndex = 63;
             this.label10.Text = "Stock";
             // 
-            // textBox7
+            // txtStock
             // 
-            this.textBox7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox7.Location = new System.Drawing.Point(296, 305);
-            this.textBox7.Name = "textBox7";
-            this.textBox7.Size = new System.Drawing.Size(61, 22);
-            this.textBox7.TabIndex = 64;
+            this.txtStock.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtStock.Location = new System.Drawing.Point(296, 305);
+            this.txtStock.Name = "txtStock";
+            this.txtStock.Size = new System.Drawing.Size(61, 22);
+            this.txtStock.TabIndex = 64;
             // 
-            // comboBox2
+            // cmbSupId
             // 
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(157, 355);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(122, 21);
-            this.comboBox2.TabIndex = 65;
+            this.cmbSupId.Location = new System.Drawing.Point(157, 357);
+            this.cmbSupId.Name = "cmbSupId";
+            this.cmbSupId.Size = new System.Drawing.Size(133, 21);
+            this.cmbSupId.TabIndex = 68;
+            this.cmbSupId.SelectedIndexChanged += new System.EventHandler(this.cmbSupId_SelectedIndexChanged_1);
             // 
-            // button2
+            // btnAdd
             // 
-            this.button2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.button2.Location = new System.Drawing.Point(265, 426);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(102, 33);
-            this.button2.TabIndex = 66;
-            this.button2.Text = "Add";
-            this.button2.UseVisualStyleBackColor = false;
+            this.btnAdd.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.btnAdd.Location = new System.Drawing.Point(265, 426);
+            this.btnAdd.Name = "btnAdd";
+            this.btnAdd.Size = new System.Drawing.Size(102, 33);
+            this.btnAdd.TabIndex = 66;
+            this.btnAdd.Text = "Add";
+            this.btnAdd.UseVisualStyleBackColor = false;
             // 
             // btnBack
             // 
@@ -261,6 +277,7 @@
             this.btnBack.Size = new System.Drawing.Size(35, 32);
             this.btnBack.TabIndex = 67;
             this.btnBack.UseVisualStyleBackColor = false;
+            this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
             // 
             // AddNewBook
             // 
@@ -269,33 +286,33 @@
             this.ClientSize = new System.Drawing.Size(619, 471);
             this.ControlBox = false;
             this.Controls.Add(this.btnBack);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.comboBox2);
-            this.Controls.Add(this.textBox7);
+            this.Controls.Add(this.btnAdd);
+            this.Controls.Add(this.cmbSupId);
+            this.Controls.Add(this.txtStock);
             this.Controls.Add(this.label10);
-            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.cmbGenre);
             this.Controls.Add(this.label9);
-            this.Controls.Add(this.textBox6);
+            this.Controls.Add(this.txtPrice);
             this.Controls.Add(this.label8);
-            this.Controls.Add(this.textBox5);
+            this.Controls.Add(this.txtSupplier);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
-            this.Controls.Add(this.textBox3);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.txtISBN);
+            this.Controls.Add(this.btnUploadCover);
+            this.Controls.Add(this.picCover);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.txtAuthor);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.txtBookTitle);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "AddNewBook";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Book Heaven || Book System";
             this.Load += new System.EventHandler(this.AddNewBook_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picCover)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -304,26 +321,26 @@
         #endregion
 
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtBookTitle;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox txtAuthor;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.PictureBox picCover;
+        private System.Windows.Forms.Button btnUploadCover;
+        private System.Windows.Forms.TextBox txtISBN;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.TextBox textBox5;
+        private System.Windows.Forms.TextBox txtSupplier;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.TextBox textBox6;
+        private System.Windows.Forms.TextBox txtPrice;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox cmbGenre;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.TextBox textBox7;
-        private System.Windows.Forms.ComboBox comboBox2;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.TextBox txtStock;
+        private System.Windows.Forms.ComboBox cmbSupId;
+        private System.Windows.Forms.Button btnAdd;
         private System.Windows.Forms.Button btnBack;
     }
 }

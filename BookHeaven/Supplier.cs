@@ -86,5 +86,13 @@ namespace BookHeaven
                 }
             }
         }
+
+        private void btnBack_Click(object sender, EventArgs e)
+        {
+            SupplierMain supplierMain = new SupplierMain();
+            supplierMain.Show();
+            this.Hide();
+
+        }
     }
 }

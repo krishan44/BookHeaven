@@ -66,7 +66,7 @@
             // button1
             // 
             this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.button1.Location = new System.Drawing.Point(410, 170);
+            this.button1.Location = new System.Drawing.Point(402, 170);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(88, 33);
             this.button1.TabIndex = 0;
@@ -98,7 +98,7 @@
             this.label1.BackColor = System.Drawing.Color.SkyBlue;
             this.label1.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.Black;
-            this.label1.Location = new System.Drawing.Point(365, 87);
+            this.label1.Location = new System.Drawing.Point(356, 87);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(185, 26);
             this.label1.TabIndex = 49;
