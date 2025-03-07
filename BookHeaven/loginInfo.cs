@@ -1,12 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using BCrypt.Net;
 
@@ -14,6 +8,8 @@ namespace BookHeaven
 {
     public partial class loginInfo : Form
     {
+        private readonly string connectionString = @"Data Source=DESKTOP-OEI0948;Initial Catalog=BookHeaven;Integrated Security=True;Connect Timeout=30;Encrypt=False;";
+
         public loginInfo()
         {
             InitializeComponent();
@@ -35,7 +31,7 @@ namespace BookHeaven
         {
             try
             {
-                using (SqlConnection conn = new SqlConnection(@"Data Source=DESKTOP-OEI0948;Initial Catalog=BookHeaven;Integrated Security=True;Connect Timeout=30;Encrypt=False;"))
+                using (SqlConnection conn = new SqlConnection(connectionString))
                 {
                     conn.Open();
                     string query = "SELECT StaffID FROM StaffTable";
@@ -43,8 +39,8 @@ namespace BookHeaven
                     using (SqlDataReader reader = command.ExecuteReader())
                     {
                         cmbStfID.Items.Clear();
-                        cmbStfID.Items.Add("--Select--"); // Add a default selection
-                        cmbStfID.SelectedIndex = 0; // Select the default item
+                        cmbStfID.Items.Add("--Select--");
+                        cmbStfID.SelectedIndex = 0;
 
                         while (reader.Read())
                         {
@@ -58,18 +54,14 @@ namespace BookHeaven
                 MessageBox.Show("Error loading Staff IDs: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
 
         private void cmbStfID_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (cmbStfID.SelectedIndex > 0) // Ensure a valid StaffID is selected (not "--Select--")
+            if (cmbStfID.SelectedIndex > 0)
             {
                 try
                 {
-                    using (SqlConnection conn = new SqlConnection(@"Data Source=DESKTOP-OEI0948;Initial Catalog=BookHeaven;Integrated Security=True;Connect Timeout=30;Encrypt=False;"))
+                    using (SqlConnection conn = new SqlConnection(connectionString))
                     {
                         conn.Open();
                         string selectedStaffID = cmbStfID.SelectedItem.ToString();
@@ -85,7 +77,7 @@ namespace BookHeaven
                                 }
                                 else
                                 {
-                                    txtName.Clear(); // Clear if StaffID not found.
+                                    txtName.Clear();
                                 }
                             }
                         }
@@ -99,28 +91,24 @@ namespace BookHeaven
             }
             else
             {
-                txtName.Clear(); // Clear if "--Select--" is selected.
+                txtName.Clear();
             }
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
+            if (!ValidateInput()) return;
+
             try
             {
-                using (SqlConnection conn = new SqlConnection(@"Data Source=DESKTOP-OEI0948;Initial Catalog=BookHeaven;Integrated Security=True;Connect Timeout=30;Encrypt=False;"))
+                using (SqlConnection conn = new SqlConnection(connectionString))
                 {
                     conn.Open();
 
-                    // Generate UserID
                     string userId = GenerateUserID(conn);
-
-                    // Hash the password
                     string passwordHash = HashPassword(txtPassword.Text);
 
-                    // Insert into UserTable
-                    string insertUserQuery = @"
-                INSERT INTO UserTable (UserID, Username, PasswordHash, Role) 
-                VALUES (@UserID, @Username, @PasswordHash, @Role)";
+                    string insertUserQuery = @"INSERT INTO UserTable (UserID, Username, PasswordHash, Role) VALUES (@UserID, @Username, @PasswordHash, @Role)";
 
                     using (SqlCommand userCommand = new SqlCommand(insertUserQuery, conn))
                     {
@@ -133,8 +121,7 @@ namespace BookHeaven
 
                         if (userRowsAffected > 0)
                         {
-                            // Update StaffTable with UserID
-                            if (cmbStfID.SelectedIndex > 0) // Ensure a staff member is selected
+                            if (cmbStfID.SelectedIndex > 0)
                             {
                                 string staffId = cmbStfID.SelectedItem.ToString();
                                 string updateUserQuery = "UPDATE StaffTable SET UserID = @UserID WHERE StaffID = @StaffID";
@@ -159,10 +146,9 @@ namespace BookHeaven
                             }
                             else
                             {
-                                MessageBox.Show("User created, but no staff member selected to associate with.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                MessageBox.Show("User created, but no staff member selected.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                                 ClearFields();
                             }
-
                         }
                         else
                         {
@@ -179,7 +165,7 @@ namespace BookHeaven
 
         private string GenerateUserID(SqlConnection conn)
         {
-            string userId = "USER_01"; // Default UserID
+            string userId = "USER_01";
 
             try
             {
@@ -190,8 +176,8 @@ namespace BookHeaven
                     if (reader.Read())
                     {
                         string lastUserId = reader["UserID"].ToString();
-                        int lastNumber = int.Parse(lastUserId.Substring(5)); // Extract the numeric part
-                        userId = "USER_" + (lastNumber + 1).ToString("D2"); // Increment and format
+                        int lastNumber = int.Parse(lastUserId.Substring(5));
+                        userId = "USER_" + (lastNumber + 1).ToString("D2");
                     }
                 }
             }
@@ -213,6 +199,29 @@ namespace BookHeaven
             txtUsername.Clear();
             txtPassword.Clear();
             cmbStfID.SelectedIndex = 0;
+        }
+
+        private bool ValidateInput()
+        {
+            if (string.IsNullOrWhiteSpace(txtUsername.Text))
+            {
+                MessageBox.Show("Username cannot be empty.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+
+            if (string.IsNullOrWhiteSpace(txtPassword.Text))
+            {
+                MessageBox.Show("Password cannot be empty.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+
+            if (cmbStfID.SelectedIndex <= 0)
+            {
+                MessageBox.Show("Please select a Staff Member.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+
+            return true;
         }
     }
 }
