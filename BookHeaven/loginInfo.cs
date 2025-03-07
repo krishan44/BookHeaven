@@ -205,9 +205,7 @@ namespace BookHeaven
 
         private string HashPassword(string password)
         {
-            // Implement your password hashing logic here (e.g., using BCrypt, Argon2, or SHA-256 with salt)
-            // For demonstration, this is a very simple and insecure example:
-            return Convert.ToBase64String(System.Text.Encoding.UTF8.GetBytes(password));
+            return BCrypt.Net.BCrypt.HashPassword(password, workFactor: 12);
         }
 
         private void ClearFields()

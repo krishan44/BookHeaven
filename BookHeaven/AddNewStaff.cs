@@ -84,8 +84,8 @@ namespace BookHeaven
                     string staffId = GenerateStaffID(conn);
 
                     string insertQuery = @"
-                INSERT INTO StaffTable (StaffID, FullName, Photo, Email, Gender, PhoneNumber, Address) 
-                VALUES (@StaffID, @FullName, @Photo, @Email, @Gender, @PhoneNumber, @Address)";
+            INSERT INTO StaffTable (StaffID, FullName, Photo, Email, Gender, PhoneNumber, Address, NIC, DoB) 
+            VALUES (@StaffID, @FullName, @Photo, @Email, @Gender, @PhoneNumber, @Address, @NIC, @DoB)";
 
                     using (SqlCommand command = new SqlCommand(insertQuery, conn))
                     {
@@ -95,6 +95,8 @@ namespace BookHeaven
                         command.Parameters.AddWithValue("@Gender", cmbGender.SelectedItem.ToString());
                         command.Parameters.AddWithValue("@PhoneNumber", txtContact.Text);
                         command.Parameters.AddWithValue("@Address", txtAddress.Text);
+                        command.Parameters.AddWithValue("@NIC", txtNIC.Text);
+                        command.Parameters.AddWithValue("@DoB", DoBPick.Value); 
 
                         if (picCover.Image != null)
                         {
@@ -123,6 +125,7 @@ namespace BookHeaven
                 MessageBox.Show("Error adding staff member: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
 
         private string GenerateStaffID(SqlConnection conn)
         {
@@ -160,6 +163,14 @@ namespace BookHeaven
             txtNIC.Clear();
             cmbGender.SelectedIndex = 0;
             DoBPick.Value = DateTime.Now;
+        }
+
+        private void btnBack_Click(object sender, EventArgs e)
+        {
+            Staff staff = new Staff();
+            staff.Show();
+            this.Hide();
+
         }
     }
 }
