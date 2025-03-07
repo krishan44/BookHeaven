@@ -21,5 +21,12 @@ namespace BookHeaven
         {
 
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            DashboardStaff dashboardStaff = new DashboardStaff();
+            dashboardStaff.Show();
+            this.Hide();
+        }
     }
 }

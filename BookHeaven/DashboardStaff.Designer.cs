@@ -135,6 +135,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(659, 289);
+            this.ControlBox = false;
             this.Controls.Add(this.btnInventory);
             this.Controls.Add(this.btnHistory);
             this.Controls.Add(this.button5);

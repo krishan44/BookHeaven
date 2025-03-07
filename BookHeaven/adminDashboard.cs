@@ -44,5 +44,10 @@ namespace BookHeaven
             supplierMain.Show();
             this.Hide();
         }
+
+        private void btnLogOut_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
     }
 }

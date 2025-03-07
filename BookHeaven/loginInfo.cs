@@ -1,8 +1,19 @@
-﻿using System;
+﻿
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Data.SqlClient;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System;
 using System.Data;
 using System.Data.SqlClient;
 using System.Windows.Forms;
 using BCrypt.Net;
+using System.Threading.Tasks;
+
 
 namespace BookHeaven
 {
@@ -150,6 +161,7 @@ namespace BookHeaven
                                 ClearFields();
                             }
                         }
+
                         else
                         {
                             MessageBox.Show("Failed to create user.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);

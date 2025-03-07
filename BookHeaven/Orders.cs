@@ -16,5 +16,13 @@ namespace BookHeaven
         {
             InitializeComponent();
         }
+
+        private void btnBack_Click(object sender, EventArgs e)
+        {
+            DashboardStaff dashboardStaff = new DashboardStaff();
+            dashboardStaff.Show();
+            this.Hide();
+        }
+
     }
 }
