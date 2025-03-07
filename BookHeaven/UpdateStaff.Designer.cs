@@ -47,7 +47,7 @@
             this.label11 = new System.Windows.Forms.Label();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.cmbStfId = new System.Windows.Forms.ComboBox();
             this.label8 = new System.Windows.Forms.Label();
             this.button3 = new System.Windows.Forms.Button();
             this.btnBack = new System.Windows.Forms.Button();
@@ -60,7 +60,7 @@
             this.button2.Location = new System.Drawing.Point(267, 541);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(102, 33);
-            this.button2.TabIndex = 128;
+            this.button2.TabIndex = 9;
             this.button2.Text = "Update";
             this.button2.UseVisualStyleBackColor = false;
             // 
@@ -72,7 +72,7 @@
             this.comboBox1.Location = new System.Drawing.Point(288, 410);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(200, 24);
-            this.comboBox1.TabIndex = 127;
+            this.comboBox1.TabIndex = 6;
             // 
             // label7
             // 
@@ -98,9 +98,10 @@
             // 
             this.textBox5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox5.Location = new System.Drawing.Point(67, 410);
+            this.textBox5.MaxLength = 12;
             this.textBox5.Name = "textBox5";
             this.textBox5.Size = new System.Drawing.Size(200, 22);
-            this.textBox5.TabIndex = 124;
+            this.textBox5.TabIndex = 5;
             // 
             // pictureBox1
             // 
@@ -119,7 +120,7 @@
             this.button1.Location = new System.Drawing.Point(241, 143);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(72, 32);
-            this.button1.TabIndex = 122;
+            this.button1.TabIndex = 8;
             this.button1.Text = "Upload";
             this.button1.UseVisualStyleBackColor = false;
             // 
@@ -140,7 +141,7 @@
             this.textBox4.Multiline = true;
             this.textBox4.Name = "textBox4";
             this.textBox4.Size = new System.Drawing.Size(421, 39);
-            this.textBox4.TabIndex = 120;
+            this.textBox4.TabIndex = 7;
             // 
             // label4
             // 
@@ -158,7 +159,7 @@
             this.dateTimePicker1.Location = new System.Drawing.Point(288, 347);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(200, 20);
-            this.dateTimePicker1.TabIndex = 118;
+            this.dateTimePicker1.TabIndex = 4;
             // 
             // label3
             // 
@@ -176,7 +177,7 @@
             this.textBox3.Location = new System.Drawing.Point(288, 279);
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(200, 22);
-            this.textBox3.TabIndex = 116;
+            this.textBox3.TabIndex = 2;
             // 
             // label1
             // 
@@ -192,9 +193,10 @@
             // 
             this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox1.Location = new System.Drawing.Point(67, 347);
+            this.textBox1.MaxLength = 10;
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(200, 22);
-            this.textBox1.TabIndex = 114;
+            this.textBox1.TabIndex = 3;
             // 
             // label11
             // 
@@ -210,9 +212,10 @@
             // 
             this.textBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox2.Location = new System.Drawing.Point(67, 279);
+            this.textBox2.MaxLength = 50;
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(200, 22);
-            this.textBox2.TabIndex = 112;
+            this.textBox2.TabIndex = 1;
             // 
             // label2
             // 
@@ -224,14 +227,15 @@
             this.label2.TabIndex = 111;
             this.label2.Text = "Update Staff";
             // 
-            // comboBox2
+            // cmbStfId
             // 
-            this.comboBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(215, 216);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(122, 24);
-            this.comboBox2.TabIndex = 129;
+            this.cmbStfId.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbStfId.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbStfId.FormattingEnabled = true;
+            this.cmbStfId.Location = new System.Drawing.Point(215, 216);
+            this.cmbStfId.Name = "cmbStfId";
+            this.cmbStfId.Size = new System.Drawing.Size(122, 24);
+            this.cmbStfId.TabIndex = 129;
             // 
             // label8
             // 
@@ -249,7 +253,7 @@
             this.button3.Location = new System.Drawing.Point(159, 541);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(102, 33);
-            this.button3.TabIndex = 131;
+            this.button3.TabIndex = 10;
             this.button3.Text = "Delete";
             this.button3.UseVisualStyleBackColor = false;
             // 
@@ -276,7 +280,7 @@
             this.Controls.Add(this.btnBack);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.label8);
-            this.Controls.Add(this.comboBox2);
+            this.Controls.Add(this.cmbStfId);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.label7);
@@ -325,7 +329,7 @@
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.ComboBox cmbStfId;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button btnBack;
