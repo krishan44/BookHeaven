@@ -23,9 +23,8 @@ namespace BookHeaven
 
         private void OrderPayment_Load(object sender, EventArgs e)
         {
-            txtOrderedBook.Text = OrderData.BookName;
             LoadCustomerIDs();
-            LoadBookPriceAndDiscount();
+            txtTotal.Text = GlobalTotal.ToString("0.00"); // Display the total from NewOrder
         }
 
         private void LoadCustomerIDs()
@@ -56,43 +55,6 @@ namespace BookHeaven
             }
         }
 
-        private void LoadBookPriceAndDiscount()
-        {
-            try
-            {
-                using (SqlConnection conn = new SqlConnection(connectionString))
-                {
-                    conn.Open();
-                    string query = @"SELECT Price, Discount FROM BooksTable WHERE Title = @Title";
-
-                    using (SqlCommand command = new SqlCommand(query, conn))
-                    {
-                        command.Parameters.AddWithValue("@Title", OrderData.BookName);
-
-                        using (SqlDataReader reader = command.ExecuteReader())
-                        {
-                            if (reader.Read())
-                            {
-                                txtPrice.Text = reader["Price"].ToString();
-                                txtDiscount.Text = reader["Discount"].ToString();
-                            }
-                            else
-                            {
-                                MessageBox.Show("Book not found or price/discount not available.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                                txtPrice.Clear();
-                                txtDiscount.Clear();
-                            }
-                        }
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error loading book price and discount: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                txtPrice.Clear();
-                txtDiscount.Clear();
-            }
-        }
         private void btnBack_Click(object sender, EventArgs e)
         {
             NewOrder newOrder = new NewOrder();
@@ -117,9 +79,7 @@ namespace BookHeaven
                     {
                         conn.Open();
                         string selectedCustomerID = cmbCusID.SelectedItem.ToString();
-                        string query = @"SELECT Name, Address, PhoneNumber, Email 
-                                       FROM CustomersTable 
-                                       WHERE CustomerID = @CustomerID";
+                        string query = @"SELECT Name, Address, PhoneNumber, Email FROM CustomersTable WHERE CustomerID = @CustomerID";
 
                         using (SqlCommand command = new SqlCommand(query, conn))
                         {
@@ -162,109 +122,6 @@ namespace BookHeaven
             txtEmail.Clear();
         }
 
-        private void txtQuantity_TextChanged(object sender, EventArgs e)
-        {
-            CalculateTotal();
-        }
-
-        private void GeneratePDF(string orderID, string customerName, string address, string contact, string email,
-                         string bookName, int quantity, decimal price, decimal discount, decimal total, string deliveryType)
-        {
-            try
-            {
-                // Define file path
-                string invoicesFolder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "Invoices");
-
-                // Ensure the directory exists
-                if (!Directory.Exists(invoicesFolder))
-                {
-                    Directory.CreateDirectory(invoicesFolder); // Create the directory if it doesn't exist
-                }
-
-                string filePath = Path.Combine(invoicesFolder, $"Invoice_{orderID}.pdf");
-
-
-                // Create a PDF document
-                Document doc = new Document(PageSize.A4);
-                PdfWriter.GetInstance(doc, new FileStream(filePath, FileMode.Create));
-                doc.Open();
-
-                // Use iTextSharp.text.Font explicitly to avoid conflict
-                iTextSharp.text.Font titleFont = FontFactory.GetFont(FontFactory.HELVETICA_BOLD, 18);
-                Paragraph title = new Paragraph("Book Heaven - Sales Invoice", titleFont);
-                title.Alignment = Element.ALIGN_CENTER;
-                doc.Add(title);
-                doc.Add(new Paragraph("\n"));
-
-                // Order Details
-                iTextSharp.text.Font boldFont = FontFactory.GetFont(FontFactory.HELVETICA_BOLD, 12);
-                iTextSharp.text.Font normalFont = FontFactory.GetFont(FontFactory.HELVETICA, 12);
-
-                doc.Add(new Paragraph($"Order ID: {orderID}", boldFont));
-                doc.Add(new Paragraph($"Customer Name: {customerName}", normalFont));
-                doc.Add(new Paragraph($"Address: {address}", normalFont));
-                doc.Add(new Paragraph($"Contact: {contact}", normalFont));
-                doc.Add(new Paragraph($"Email: {email}", normalFont));
-                doc.Add(new Paragraph($"Delivery Type: {deliveryType}", normalFont));
-                doc.Add(new Paragraph("\n"));
-
-                // Order Summary Table
-                PdfPTable table = new PdfPTable(5); // 5 columns
-                table.WidthPercentage = 100;
-
-                // FIX: Ensure SetWidths uses float values instead of strings
-                table.SetWidths(new float[] { 3f, 1f, 1f, 1f, 1f });
-
-                // Add table headers
-                table.AddCell(new PdfPCell(new Phrase("Book Name", boldFont)));
-                table.AddCell(new PdfPCell(new Phrase("Quantity", boldFont)));
-                table.AddCell(new PdfPCell(new Phrase("Price", boldFont)));
-                table.AddCell(new PdfPCell(new Phrase("Discount (%)", boldFont)));
-                table.AddCell(new PdfPCell(new Phrase("Total", boldFont)));
-
-                // Add table data
-                table.AddCell(new PdfPCell(new Phrase(bookName, normalFont)));
-                table.AddCell(new PdfPCell(new Phrase(quantity.ToString(), normalFont)));
-                table.AddCell(new PdfPCell(new Phrase(price.ToString("0.00"), normalFont)));
-                table.AddCell(new PdfPCell(new Phrase(discount.ToString("0.00"), normalFont)));
-                table.AddCell(new PdfPCell(new Phrase(total.ToString("0.00"), normalFont)));
-
-                doc.Add(table);
-                doc.Add(new Paragraph("\n"));
-
-                // Closing message
-                doc.Add(new Paragraph("Thank you for your purchase!", normalFont));
-                doc.Close();
-
-                MessageBox.Show($"Invoice saved successfully!\nLocation: {filePath}", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error generating PDF: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-
-        private void CalculateTotal()
-        {
-            if (string.IsNullOrEmpty(txtQuantity.Text) || string.IsNullOrEmpty(txtPrice.Text) || string.IsNullOrEmpty(txtDiscount.Text))
-            {
-                txtTotal.Text = "";
-                return;
-            }
-
-            if (!int.TryParse(txtQuantity.Text, out int quantity) || !decimal.TryParse(txtPrice.Text, out decimal price) || !decimal.TryParse(txtDiscount.Text, out decimal discount))
-            {
-                txtTotal.Text = "Invalid input";
-                return;
-            }
-
-            decimal discountedPrice = price - (price * (discount / 100));
-            decimal total = quantity * discountedPrice;
-
-            txtTotal.Text = total.ToString("0.00"); // Format to two decimal places
-        }
-
         private void btnConfirm_Click(object sender, EventArgs e)
         {
             try
@@ -280,20 +137,16 @@ namespace BookHeaven
                         string orderID = GenerateOrderID(conn, transaction);
 
                         // Get values from controls
-                        string orderedBook = txtOrderedBook.Text;
+                        string orderedBook = string.Join(", ", GlobalBookNames);
                         DateTime orderDate = DateTime.Now;
                         string status = "Pending";
                         string deliveryType = PickUp.Checked ? "PickUp" : "Delivery";
-                        decimal discount = decimal.Parse(txtDiscount.Text);
                         decimal total = decimal.Parse(txtTotal.Text);
                         object completedDate = DBNull.Value;
                         string customerID = cmbCusID.SelectedItem.ToString();
-                        int quantity = int.Parse(txtQuantity.Text);
 
                         // Insert into OrdersTable
-                        string insertOrderQuery = @"
-                            INSERT INTO OrdersTable (OrderID, OrderedBook, OrderDate, Status, DeliveryType, Discount, Total, CompletedDate, CustomerID, Quantity)
-                            VALUES (@OrderID, @OrderedBook, @OrderDate, @Status, @DeliveryType, @Discount, @Total, @CompletedDate, @CustomerID, @Quantity)";
+                        string insertOrderQuery = @"INSERT INTO OrdersTable (OrderID, OrderedBook, OrderDate, Status, DeliveryType, Total, CompletedDate, CustomerID) VALUES (@OrderID, @OrderedBook, @OrderDate, @Status, @DeliveryType, @Total, @CompletedDate, @CustomerID)";
 
                         using (SqlCommand command = new SqlCommand(insertOrderQuery, conn, transaction))
                         {
@@ -302,26 +155,16 @@ namespace BookHeaven
                             command.Parameters.AddWithValue("@OrderDate", orderDate);
                             command.Parameters.AddWithValue("@Status", status);
                             command.Parameters.AddWithValue("@DeliveryType", deliveryType);
-                            command.Parameters.AddWithValue("@Discount", discount);
                             command.Parameters.AddWithValue("@Total", total);
                             command.Parameters.AddWithValue("@CompletedDate", completedDate);
                             command.Parameters.AddWithValue("@CustomerID", customerID);
-                            command.Parameters.AddWithValue("@Quantity", quantity);
 
                             command.ExecuteNonQuery();
                         }
 
-                        // Update Book Stock
-                        UpdateBookStock(conn, transaction, orderedBook, quantity);
-
                         transaction.Commit(); // Commit transaction
 
                         MessageBox.Show("Order confirmed successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                        // Generate PDF Invoice
-                        GeneratePDF(orderID, txtCustomer.Text, txtAddress.Text, txtContact.Text, txtEmail.Text,
-                            txtOrderedBook.Text, quantity, decimal.Parse(txtPrice.Text),
-                            discount, total, deliveryType);
 
                         ClearOrderFields();
                     }
@@ -363,26 +206,6 @@ namespace BookHeaven
 
             return orderId;
         }
-
-        private void UpdateBookStock(SqlConnection conn, SqlTransaction transaction, string orderedBook, int quantity)
-        {
-            try
-            {
-                string updateQuery = "UPDATE BooksTable SET StockQuantity = StockQuantity - @Quantity WHERE Title = @Title";
-                using (SqlCommand command = new SqlCommand(updateQuery, conn, transaction))
-                {
-                    command.Parameters.AddWithValue("@Quantity", quantity);
-                    command.Parameters.AddWithValue("@Title", orderedBook);
-                    command.ExecuteNonQuery();
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error updating book stock: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                throw ex; // Re-throw to rollback the transaction
-            }
-        }
-
         private void ClearOrderFields()
         {
             cmbCusID.SelectedIndex = 0;
@@ -390,7 +213,6 @@ namespace BookHeaven
             txtAddress.Clear();
             txtContact.Clear();
             txtEmail.Clear();
-            txtQuantity.Clear();
             txtTotal.Clear();
         }
     }
