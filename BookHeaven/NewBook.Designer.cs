@@ -54,7 +54,9 @@
             // 
             // button2
             // 
-            this.button2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.button2.BackColor = System.Drawing.Color.CornflowerBlue;
+            this.button2.FlatAppearance.BorderSize = 0;
+            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button2.Location = new System.Drawing.Point(97, 170);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(88, 33);
@@ -66,6 +68,8 @@
             // button1
             // 
             this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.button1.FlatAppearance.BorderSize = 0;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.Location = new System.Drawing.Point(402, 170);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(88, 33);
@@ -108,7 +112,7 @@
             // 
             // btnBack
             // 
-            this.btnBack.BackColor = System.Drawing.Color.Transparent;
+            this.btnBack.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.btnBack.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnBack.BackgroundImage")));
             this.btnBack.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnBack.Cursor = System.Windows.Forms.Cursors.Arrow;
@@ -120,6 +124,7 @@
             this.btnBack.Size = new System.Drawing.Size(35, 32);
             this.btnBack.TabIndex = 50;
             this.btnBack.UseVisualStyleBackColor = false;
+            this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
             // 
             // NewBook
             // 
@@ -135,6 +140,7 @@
             this.Controls.Add(this.splitter1);
             this.Controls.Add(this.splitter2);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "NewBook";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Book Heaven || Book System";

@@ -41,7 +41,6 @@
             this.label4 = new System.Windows.Forms.Label();
             this.txtEmail = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.btnSend = new System.Windows.Forms.Button();
             this.btnBack = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataViewBooks)).BeginInit();
             this.SuspendLayout();
@@ -175,16 +174,6 @@
             this.label5.TabIndex = 148;
             this.label5.Text = "Email";
             // 
-            // btnSend
-            // 
-            this.btnSend.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
-            this.btnSend.Location = new System.Drawing.Point(606, 433);
-            this.btnSend.Name = "btnSend";
-            this.btnSend.Size = new System.Drawing.Size(88, 33);
-            this.btnSend.TabIndex = 150;
-            this.btnSend.Text = "Send";
-            this.btnSend.UseVisualStyleBackColor = false;
-            // 
             // btnBack
             // 
             this.btnBack.BackColor = System.Drawing.Color.Transparent;
@@ -204,11 +193,11 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(735, 498);
             this.ControlBox = false;
             this.Controls.Add(this.btnBack);
-            this.Controls.Add(this.btnSend);
             this.Controls.Add(this.txtEmail);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.txtConNo);
@@ -222,6 +211,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label8);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "AdminInventory";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Book Heaven || Book System";
@@ -246,7 +236,6 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox txtEmail;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Button btnSend;
         private System.Windows.Forms.Button btnBack;
     }
 }

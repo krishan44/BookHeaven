@@ -49,5 +49,12 @@ namespace BookHeaven
         {
             Application.Exit();
         }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            BookOrder bookOrder = new BookOrder();
+            bookOrder.Show();
+            this.Hide();
+        }
     }
 }

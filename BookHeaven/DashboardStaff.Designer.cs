@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.label1 = new System.Windows.Forms.Label();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DashboardStaff));
             this.btnNewOrder = new System.Windows.Forms.Button();
             this.btnOrders = new System.Windows.Forms.Button();
             this.btnAddCustomer = new System.Windows.Forms.Button();
@@ -36,14 +36,8 @@
             this.button5 = new System.Windows.Forms.Button();
             this.btnHistory = new System.Windows.Forms.Button();
             this.btnInventory = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
-            // 
-            // label1
-            // 
-            this.label1.Location = new System.Drawing.Point(0, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(100, 23);
-            this.label1.TabIndex = 0;
             // 
             // btnNewOrder
             // 
@@ -87,8 +81,9 @@
             // label2
             // 
             this.label2.AutoSize = true;
+            this.label2.BackColor = System.Drawing.Color.Transparent;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(272, 133);
+            this.label2.Location = new System.Drawing.Point(204, 160);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(190, 24);
             this.label2.TabIndex = 6;
@@ -96,13 +91,17 @@
             // 
             // button5
             // 
-            this.button5.BackColor = System.Drawing.Color.LightCoral;
-            this.button5.Location = new System.Drawing.Point(572, 12);
+            this.button5.BackColor = System.Drawing.Color.Transparent;
+            this.button5.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button5.BackgroundImage")));
+            this.button5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.button5.FlatAppearance.BorderSize = 0;
+            this.button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button5.Location = new System.Drawing.Point(498, 12);
             this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(75, 23);
+            this.button5.Size = new System.Drawing.Size(43, 33);
             this.button5.TabIndex = 7;
-            this.button5.Text = "Out";
             this.button5.UseVisualStyleBackColor = false;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
             // btnHistory
             // 
@@ -130,12 +129,29 @@
             this.btnInventory.UseVisualStyleBackColor = false;
             this.btnInventory.Click += new System.EventHandler(this.btnInventory_Click);
             // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.Color.Transparent;
+            this.button1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button1.BackgroundImage")));
+            this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.button1.Enabled = false;
+            this.button1.FlatAppearance.BorderSize = 0;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Location = new System.Drawing.Point(233, 69);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(110, 88);
+            this.button1.TabIndex = 10;
+            this.button1.UseVisualStyleBackColor = false;
+            // 
             // DashboardStaff
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(659, 289);
+            this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.ClientSize = new System.Drawing.Size(553, 289);
             this.ControlBox = false;
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.btnInventory);
             this.Controls.Add(this.btnHistory);
             this.Controls.Add(this.button5);
@@ -143,8 +159,8 @@
             this.Controls.Add(this.btnAddCustomer);
             this.Controls.Add(this.btnOrders);
             this.Controls.Add(this.btnNewOrder);
-            this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "DashboardStaff";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Book Heaven || Book System";
@@ -155,8 +171,6 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnNewOrder;
         private System.Windows.Forms.Button btnOrders;
         private System.Windows.Forms.Button btnAddCustomer;
@@ -164,6 +178,7 @@
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Button btnHistory;
         private System.Windows.Forms.Button btnInventory;
+        private System.Windows.Forms.Button button1;
     }
 }
 

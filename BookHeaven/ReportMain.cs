@@ -23,5 +23,19 @@ namespace BookHeaven
             adminInventory.Show();
             this.Hide();
         }
+
+        private void btnBack_Click(object sender, EventArgs e)
+        {
+            adminDashboard adminDashboard = new adminDashboard();
+            adminDashboard.Show();
+            this.Hide();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            SalesReport salesReport = new SalesReport();
+            salesReport.Show();
+            this.Hide();
+        }
     }
 }

@@ -31,5 +31,13 @@ namespace BookHeaven
             updateStaff.Show();
             this.Hide();
         }
+
+        private void btnBack_Click(object sender, EventArgs e)
+        {
+            adminDashboard adminDashboard = new adminDashboard();
+            adminDashboard.Show();
+            this.Hide();
+
+        }
     }
 }

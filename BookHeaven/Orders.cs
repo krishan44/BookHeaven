@@ -111,17 +111,24 @@ namespace BookHeaven
 
             string orderID = txtOrderID.Text;
             string newStatus = cmbStatus.SelectedItem.ToString();
+            DateTime? completedDate = null;
+
+            if (newStatus == "Picked" || newStatus == "Delivered")
+            {
+                completedDate = DateTime.Now;
+            }
 
             try
             {
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
                     conn.Open();
-                    string query = "UPDATE OrdersTable SET Status = @Status WHERE OrderID = @OrderID";
+                    string query = "UPDATE OrdersTable SET Status = @Status, CompletedDate = @CompletedDate WHERE OrderID = @OrderID";
                     using (SqlCommand cmd = new SqlCommand(query, conn))
                     {
                         cmd.Parameters.AddWithValue("@Status", newStatus);
                         cmd.Parameters.AddWithValue("@OrderID", orderID);
+                        cmd.Parameters.AddWithValue("@CompletedDate", (object)completedDate ?? DBNull.Value);
                         int rowsAffected = cmd.ExecuteNonQuery();
 
                         if (rowsAffected > 0)

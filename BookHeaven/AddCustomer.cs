@@ -102,5 +102,10 @@ namespace BookHeaven
             dashboardStaff.Show();
             this.Hide();
         }
+
+        private void AddCustomer_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
