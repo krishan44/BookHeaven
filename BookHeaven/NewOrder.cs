@@ -221,27 +221,58 @@ namespace BookHeaven
         {
             if (!string.IsNullOrEmpty(txtBookName.Text) && !string.IsNullOrEmpty(txtQuantity.Text) && !string.IsNullOrEmpty(txtTotal.Text))
             {
-                orderGridView.Rows.Add(txtBookName.Text, txtQuantity.Text, txtTotal.Text);
-                GlobalBookNames.Add(txtBookName.Text); // Add book name to global list
-                GlobalTotal += decimal.Parse(txtTotal.Text); // Accumulate the total
-                // Optionally clear the input fields after adding
-                txtBookName.Clear();
-                txtQuantity.Clear();
-                txtTotal.Clear();
-                txtAuthor.Clear();
-                txtStock.Clear();
-                txtPrice.Clear();
-                txtDiscount.Clear();
-                picCover.Image = null;
-                label1.Focus(); // Remove focus from the DataGridView
-                bookListBox.Visible = false; // Close the listBox
+                if (int.TryParse(txtQuantity.Text, out int quantity) && decimal.TryParse(txtTotal.Text, out decimal total))
+                {
+                    orderGridView.Rows.Add(txtBookName.Text, txtQuantity.Text, txtTotal.Text);
+                    GlobalBookNames.Add(txtBookName.Text); // Add book name to global list
+                    GlobalTotal += total; // Accumulate the total
+
+                    // Update stock quantity before clearing fields
+                    UpdateStockQuantity(txtBookName.Text, quantity);
+
+                    // Optionally clear the input fields after adding
+                    txtBookName.Clear();
+                    txtQuantity.Clear();
+                    txtTotal.Clear();
+                    txtAuthor.Clear();
+                    txtStock.Clear();
+                    txtPrice.Clear();
+                    txtDiscount.Clear();
+                    picCover.Image = null;
+                    label1.Focus(); // Remove focus from the DataGridView
+                    bookListBox.Visible = false; // Close the listBox
+                }
+                else
+                {
+                    MessageBox.Show("Please enter valid numeric values for Quantity and Total.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
             }
             else
             {
                 MessageBox.Show("Please fill in all required fields.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
-
+        private void UpdateStockQuantity(string bookTitle, int quantityOrdered)
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+                    string query = "UPDATE BooksTable SET StockQuantity = StockQuantity - @Quantity WHERE Title = @Title";
+                    using (SqlCommand cmd = new SqlCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@Quantity", quantityOrdered);
+                        cmd.Parameters.AddWithValue("@Title", bookTitle);
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error updating stock quantity: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
         private void orderGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 

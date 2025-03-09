@@ -213,12 +213,10 @@
             // orderGridView
             // 
             this.orderGridView.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.orderGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.orderGridView.Location = new System.Drawing.Point(424, 79);
+            this.orderGridView.Location = new System.Drawing.Point(415, 84);
             this.orderGridView.Name = "orderGridView";
-            this.orderGridView.Size = new System.Drawing.Size(344, 227);
-            this.orderGridView.TabIndex = 54;
-            this.orderGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.orderGridView_CellContentClick);
+            this.orderGridView.Size = new System.Drawing.Size(349, 222);
+            this.orderGridView.TabIndex = 60;
             // 
             // txtTotal
             // 
