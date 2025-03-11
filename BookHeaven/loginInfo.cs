@@ -116,6 +116,20 @@ namespace BookHeaven
                 {
                     conn.Open();
 
+                    // Check if the username already exists
+                    string checkUsernameQuery = "SELECT COUNT(*) FROM UserTable WHERE Username = @Username";
+                    using (SqlCommand checkUsernameCommand = new SqlCommand(checkUsernameQuery, conn))
+                    {
+                        checkUsernameCommand.Parameters.AddWithValue("@Username", txtUsername.Text);
+                        int usernameCount = (int)checkUsernameCommand.ExecuteScalar();
+
+                        if (usernameCount > 0)
+                        {
+                            MessageBox.Show("Username already exists. Please choose a different username.", "Duplicate Username", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            return; // Exit the method if the username already exists
+                        }
+                    }
+
                     string userId = GenerateUserID(conn);
                     string passwordHash = HashPassword(txtPassword.Text);
 
@@ -161,7 +175,6 @@ namespace BookHeaven
                                 ClearFields();
                             }
                         }
-
                         else
                         {
                             MessageBox.Show("Failed to create user.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);

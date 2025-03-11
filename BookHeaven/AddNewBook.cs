@@ -174,6 +174,7 @@ namespace BookHeaven
             txtISBN.Clear();
             btnUploadCover.Location = new Point(btnUploadCover.Location.X, btnUploadCover.Location.Y - 140);
             isImageUploaded = false; // Set the flag
+            txtDiscount.Clear();
         }
         private void btnAdd_Click(object sender, EventArgs e)
         {
@@ -181,10 +182,25 @@ namespace BookHeaven
 
             try
             {
+                // Check if the book title already exists
+                string checkQuery = "SELECT COUNT(*) FROM BooksTable WHERE Title = @Title";
+                SqlCommand checkCommand = new SqlCommand(checkQuery, conn);
+                checkCommand.Parameters.AddWithValue("@Title", txtBookTitle.Text);
+
+                conn.Open();
+                int bookCount = (int)checkCommand.ExecuteScalar();
+
+                if (bookCount > 0)
+                {
+                    conn.Close();
+                    MessageBox.Show("This book title is already in the system.", "Duplicate Book", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                // Generate the new BookId
                 string query = "SELECT TOP 1 BookId FROM BooksTable ORDER BY BookId DESC";
                 SqlCommand command = new SqlCommand(query, conn);
 
-                conn.Open();
                 object result = command.ExecuteScalar();
 
                 if (result != null && result != DBNull.Value)
@@ -200,7 +216,8 @@ namespace BookHeaven
                     bookID = "BK_01";
                 }
 
-                string insertQuery = "INSERT INTO BooksTable (BookId, Title, Author, Genre, ISBN, Price, BookImage, StockQuantity, SupplierID) VALUES (@BookId, @Title, @Author, @Genre, @ISBN, @Price, @BookImage, @Stock, @SupplierID)";
+                // Insert the new book (including Discount)
+                string insertQuery = "INSERT INTO BooksTable (BookId, Title, Author, Genre, ISBN, Price, BookImage, StockQuantity, SupplierID, Discount) VALUES (@BookId, @Title, @Author, @Genre, @ISBN, @Price, @BookImage, @Stock, @SupplierID, @Discount)";
 
                 command = new SqlCommand(insertQuery, conn);
                 command.Parameters.AddWithValue("@BookId", bookID);
@@ -209,6 +226,7 @@ namespace BookHeaven
                 command.Parameters.AddWithValue("@Genre", cmbGenre.SelectedItem.ToString());
                 command.Parameters.AddWithValue("@ISBN", txtISBN.Text);
                 command.Parameters.AddWithValue("@Price", txtPrice.Text);
+
                 if (picCover.Image != null)
                 {
                     command.Parameters.AddWithValue("@BookImage", ImageToByteArray(picCover.Image));
@@ -217,32 +235,25 @@ namespace BookHeaven
                 {
                     command.Parameters.AddWithValue("@BookImage", DBNull.Value);
                 }
+
                 command.Parameters.AddWithValue("@Stock", txtStock.Text);
                 command.Parameters.AddWithValue("@SupplierID", cmbSupId.SelectedItem.ToString());
+
+                // Add Discount parameter
+                if (string.IsNullOrEmpty(txtDiscount.Text))
+                {
+                    command.Parameters.AddWithValue("@Discount", DBNull.Value); // or 0, depending on your database design
+                }
+                else
+                {
+                    command.Parameters.AddWithValue("@Discount", Convert.ToDecimal(txtDiscount.Text));
+                }
 
                 command.ExecuteNonQuery();
                 conn.Close();
 
                 MessageBox.Show("Book added successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 clearFields();
-                if (picCover.Image != null)
-                {
-                    try
-                    {
-                        byte[] imageBytes = ImageToByteArray(picCover.Image);
-                        command.Parameters.AddWithValue("@BookImage", imageBytes);
-                    }
-                    catch (Exception imageEx)
-                    {
-                        MessageBox.Show($"Error converting image: {imageEx.Message}", "Image Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        command.Parameters.AddWithValue("@BookImage", DBNull.Value);
-                    }
-
-                }
-                else
-                {
-                    command.Parameters.AddWithValue("@BookImage", DBNull.Value);
-                }
             }
             catch (Exception ex)
             {

@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
 using System.Windows.Forms.DataVisualization.Charting;
-using System.Globalization; // Add this namespace
+using System.Globalization;
 
 namespace BookHeaven
 {
@@ -63,9 +63,9 @@ namespace BookHeaven
                     connection.Open();
 
                     string query = @"
-                SELECT OrderedBook, OrderDate, Total
-                FROM OrdersTable
-                WHERE 1=1";
+                        SELECT OrderedBook, OrderDate, Total
+                        FROM OrdersTable
+                        WHERE 1=1";
 
                     if (!string.IsNullOrEmpty(txtBookName.Text))
                     {
@@ -75,6 +75,11 @@ namespace BookHeaven
                     if (cmbMonth.SelectedIndex > 0)
                     {
                         query += " AND MONTH(OrderDate) = @Month";
+                    }
+
+                    if (dateTimeFrom.Value != null && dateTimeTo.Value != null)
+                    {
+                        query += " AND OrderDate >= @FromDate AND OrderDate <= @ToDate";
                     }
 
                     using (SqlCommand command = new SqlCommand(query, connection))
@@ -89,17 +94,22 @@ namespace BookHeaven
                             command.Parameters.AddWithValue("@Month", cmbMonth.SelectedIndex);
                         }
 
+                        if (dateTimeFrom.Value != null && dateTimeTo.Value != null)
+                        {
+                            command.Parameters.AddWithValue("@FromDate", dateTimeFrom.Value.Date);
+                            command.Parameters.AddWithValue("@ToDate", dateTimeTo.Value.Date.AddDays(1).AddSeconds(-1));
+                        }
+
                         using (SqlDataReader reader = command.ExecuteReader())
                         {
                             Dictionary<string, int> bookCounts = new Dictionary<string, int>();
-                            decimal totalSales = 0; // Initialize totalSales here
+                            decimal totalSales = 0;
 
                             while (reader.Read())
                             {
                                 string orderedBooks = reader["OrderedBook"].ToString();
                                 decimal total = Convert.ToDecimal(reader["Total"]);
 
-                                // Split the OrderedBook string and count individual books
                                 string[] books = orderedBooks.Split(new char[] { ',', ';' }, StringSplitOptions.RemoveEmptyEntries);
                                 foreach (string book in books)
                                 {
@@ -116,11 +126,9 @@ namespace BookHeaven
                                     }
                                 }
 
-                                // Add the total for the current row to totalSales
                                 totalSales += total;
                             }
 
-                            // Update the chart with book counts
                             chartSales.Series.Clear();
                             Series series = new Series("Sales");
                             series.ChartType = SeriesChartType.Column;
@@ -132,7 +140,6 @@ namespace BookHeaven
 
                             chartSales.Series.Add(series);
 
-                            // Use Sri Lankan Rupee (LKR) format
                             CultureInfo lkCulture = new CultureInfo("en-LK");
                             lblMostSales.Text = "Total Sales: " + totalSales.ToString("C", lkCulture);
                         }
@@ -151,6 +158,16 @@ namespace BookHeaven
         }
 
         private void cmbMonth_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            LoadSalesData();
+        }
+
+        private void dateTimeTo_ValueChanged(object sender, EventArgs e)
+        {
+            LoadSalesData();
+        }
+
+        private void dateTimeFrom_ValueChanged(object sender, EventArgs e)
         {
             LoadSalesData();
         }

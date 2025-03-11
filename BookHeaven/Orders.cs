@@ -112,11 +112,8 @@ namespace BookHeaven
             string orderID = txtOrderID.Text;
             string newStatus = cmbStatus.SelectedItem.ToString();
             DateTime? completedDate = null;
-
-            if (newStatus == "Picked" || newStatus == "Delivered")
-            {
-                completedDate = DateTime.Now;
-            }
+            completedDate = DateTime.Now;
+            
 
             try
             {
@@ -128,7 +125,7 @@ namespace BookHeaven
                     {
                         cmd.Parameters.AddWithValue("@Status", newStatus);
                         cmd.Parameters.AddWithValue("@OrderID", orderID);
-                        cmd.Parameters.AddWithValue("@CompletedDate", (object)completedDate ?? DBNull.Value);
+                        cmd.Parameters.AddWithValue("@CompletedDate", (object)completedDate ?? DBNull.Value); // Use the nullable variable
                         int rowsAffected = cmd.ExecuteNonQuery();
 
                         if (rowsAffected > 0)

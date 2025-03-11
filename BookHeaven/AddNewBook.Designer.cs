@@ -51,6 +51,8 @@
             this.cmbSupId = new System.Windows.Forms.ComboBox();
             this.btnAdd = new System.Windows.Forms.Button();
             this.btnBack = new System.Windows.Forms.Button();
+            this.txtDiscount = new System.Windows.Forms.TextBox();
+            this.label11 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.picCover)).BeginInit();
             this.SuspendLayout();
             // 
@@ -191,7 +193,7 @@
             this.label8.AutoSize = true;
             this.label8.BackColor = System.Drawing.Color.Transparent;
             this.label8.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(100, 307);
+            this.label8.Location = new System.Drawing.Point(53, 307);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(48, 21);
             this.label8.TabIndex = 59;
@@ -200,7 +202,7 @@
             // txtPrice
             // 
             this.txtPrice.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPrice.Location = new System.Drawing.Point(157, 306);
+            this.txtPrice.Location = new System.Drawing.Point(110, 306);
             this.txtPrice.Name = "txtPrice";
             this.txtPrice.Size = new System.Drawing.Size(61, 22);
             this.txtPrice.TabIndex = 5;
@@ -244,7 +246,7 @@
             this.label10.AutoSize = true;
             this.label10.BackColor = System.Drawing.Color.Transparent;
             this.label10.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(236, 306);
+            this.label10.Location = new System.Drawing.Point(189, 306);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(54, 21);
             this.label10.TabIndex = 63;
@@ -253,7 +255,7 @@
             // txtStock
             // 
             this.txtStock.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtStock.Location = new System.Drawing.Point(296, 305);
+            this.txtStock.Location = new System.Drawing.Point(249, 305);
             this.txtStock.Name = "txtStock";
             this.txtStock.Size = new System.Drawing.Size(61, 22);
             this.txtStock.TabIndex = 6;
@@ -293,6 +295,25 @@
             this.btnBack.UseVisualStyleBackColor = false;
             this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
             // 
+            // txtDiscount
+            // 
+            this.txtDiscount.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtDiscount.Location = new System.Drawing.Point(404, 305);
+            this.txtDiscount.Name = "txtDiscount";
+            this.txtDiscount.Size = new System.Drawing.Size(61, 22);
+            this.txtDiscount.TabIndex = 68;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.BackColor = System.Drawing.Color.Transparent;
+            this.label11.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.Location = new System.Drawing.Point(323, 305);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(77, 21);
+            this.label11.TabIndex = 69;
+            this.label11.Text = "Discount";
+            // 
             // AddNewBook
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -301,6 +322,8 @@
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(619, 471);
             this.ControlBox = false;
+            this.Controls.Add(this.label11);
+            this.Controls.Add(this.txtDiscount);
             this.Controls.Add(this.btnBack);
             this.Controls.Add(this.btnAdd);
             this.Controls.Add(this.cmbSupId);
@@ -359,5 +382,7 @@
         private System.Windows.Forms.ComboBox cmbSupId;
         private System.Windows.Forms.Button btnAdd;
         private System.Windows.Forms.Button btnBack;
+        private System.Windows.Forms.TextBox txtDiscount;
+        private System.Windows.Forms.Label label11;
     }
 }

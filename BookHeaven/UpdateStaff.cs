@@ -161,7 +161,7 @@ namespace BookHeaven
                 return;
             }
 
-            DialogResult confirm = MessageBox.Show("Are you sure you want to delete this staff member?", "Confirm Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            DialogResult confirm = MessageBox.Show("Are you sure you want to delete this staff member and their user access?", "Confirm Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
             if (confirm == DialogResult.Yes)
             {
                 using (SqlConnection conn = new SqlConnection(connectionString))
@@ -169,19 +169,43 @@ namespace BookHeaven
                     try
                     {
                         conn.Open();
-                        string query = "DELETE FROM StaffTable WHERE StaffID=@StaffID";
-                        SqlCommand cmd = new SqlCommand(query, conn);
-                        cmd.Parameters.AddWithValue("@StaffID", cmbStfId.SelectedItem.ToString());
 
-                        cmd.ExecuteNonQuery();
-                        MessageBox.Show("Staff deleted successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        // Get the UserID from StaffTable
+                        string getUserIdQuery = "SELECT UserID FROM StaffTable WHERE StaffID = @StaffID";
+                        using (SqlCommand getUserIdCmd = new SqlCommand(getUserIdQuery, conn))
+                        {
+                            getUserIdCmd.Parameters.AddWithValue("@StaffID", cmbStfId.SelectedItem.ToString());
+                            object userIdObj = getUserIdCmd.ExecuteScalar();
 
+                            if (userIdObj != null && userIdObj != DBNull.Value)
+                            {
+                                string userId = userIdObj.ToString();
+
+                                // Delete from UserTable
+                                string deleteUserQuery = "DELETE FROM UserTable WHERE UserID = @UserID";
+                                using (SqlCommand deleteUserCmd = new SqlCommand(deleteUserQuery, conn))
+                                {
+                                    deleteUserCmd.Parameters.AddWithValue("@UserID", userId);
+                                    deleteUserCmd.ExecuteNonQuery();
+                                }
+                            }
+                        }
+
+                        // Delete from StaffTable
+                        string deleteStaffQuery = "DELETE FROM StaffTable WHERE StaffID = @StaffID";
+                        using (SqlCommand deleteStaffCmd = new SqlCommand(deleteStaffQuery, conn))
+                        {
+                            deleteStaffCmd.Parameters.AddWithValue("@StaffID", cmbStfId.SelectedItem.ToString());
+                            deleteStaffCmd.ExecuteNonQuery();
+                        }
+
+                        MessageBox.Show("Staff and user access deleted successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         clear();
                         LoadStaffIDs();
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show("Error deleting staff: " + ex.Message);
+                        MessageBox.Show("Error deleting staff and user access: " + ex.Message);
                     }
                 }
             }
