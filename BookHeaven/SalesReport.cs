@@ -63,9 +63,9 @@ namespace BookHeaven
                     connection.Open();
 
                     string query = @"
-                        SELECT OrderedBook, OrderDate, Total
-                        FROM OrdersTable
-                        WHERE 1=1";
+                SELECT OrderedBook, OrderDate, Total
+                FROM OrdersTable
+                WHERE 1=1";
 
                     if (!string.IsNullOrEmpty(txtBookName.Text))
                     {
@@ -92,56 +92,35 @@ namespace BookHeaven
                         using (SqlDataReader reader = command.ExecuteReader())
                         {
                             Dictionary<string, int> bookCounts = new Dictionary<string, int>();
-                            decimal totalSales = 0;
+                            decimal totalSales = 0; // Initialize totalSales here
 
                             while (reader.Read())
                             {
                                 string orderedBooks = reader["OrderedBook"].ToString();
-                                DateTime orderDate = (DateTime)reader["OrderDate"];
                                 decimal total = Convert.ToDecimal(reader["Total"]);
+
+                                // Split the OrderedBook string and count individual books
                                 string[] books = orderedBooks.Split(new char[] { ',', ';' }, StringSplitOptions.RemoveEmptyEntries);
-
-                                if (!string.IsNullOrEmpty(txtBookName.Text))
+                                foreach (string book in books)
                                 {
-                                    foreach (string book in books)
-                                    {
-                                        string trimmedBook = book.Trim();
-                                        if (string.IsNullOrEmpty(trimmedBook)) continue;
+                                    string trimmedBook = book.Trim();
+                                    if (string.IsNullOrEmpty(trimmedBook)) continue;
 
-                                        if (trimmedBook.IndexOf(txtBookName.Text, StringComparison.OrdinalIgnoreCase) >= 0)
-                                        {
-                                            if (bookCounts.ContainsKey(trimmedBook))
-                                            {
-                                                bookCounts[trimmedBook]++;
-                                            }
-                                            else
-                                            {
-                                                bookCounts[trimmedBook] = 1;
-                                            }
-                                            totalSales += total;
-                                        }
+                                    if (bookCounts.ContainsKey(trimmedBook))
+                                    {
+                                        bookCounts[trimmedBook]++;
+                                    }
+                                    else
+                                    {
+                                        bookCounts[trimmedBook] = 1;
                                     }
                                 }
-                                else
-                                {
-                                    foreach (string book in books)
-                                    {
-                                        string trimmedBook = book.Trim();
-                                        if (string.IsNullOrEmpty(trimmedBook)) continue;
 
-                                        if (bookCounts.ContainsKey(trimmedBook))
-                                        {
-                                            bookCounts[trimmedBook]++;
-                                        }
-                                        else
-                                        {
-                                            bookCounts[trimmedBook] = 1;
-                                        }
-                                        totalSales += total;
-                                    }
-                                }
+                                // Add the total for the current row to totalSales
+                                totalSales += total;
                             }
 
+                            // Update the chart with book counts
                             chartSales.Series.Clear();
                             Series series = new Series("Sales");
                             series.ChartType = SeriesChartType.Column;

@@ -95,7 +95,7 @@
             this.label4.AutoSize = true;
             this.label4.BackColor = System.Drawing.Color.Transparent;
             this.label4.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(304, 64);
+            this.label4.Location = new System.Drawing.Point(156, 64);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(107, 21);
             this.label4.TabIndex = 43;
@@ -132,7 +132,7 @@
             this.cmbCusID.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbCusID.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbCusID.FormattingEnabled = true;
-            this.cmbCusID.Location = new System.Drawing.Point(308, 86);
+            this.cmbCusID.Location = new System.Drawing.Point(156, 86);
             this.cmbCusID.Name = "cmbCusID";
             this.cmbCusID.Size = new System.Drawing.Size(116, 24);
             this.cmbCusID.TabIndex = 51;

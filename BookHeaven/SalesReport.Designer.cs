@@ -143,6 +143,7 @@
             this.label3.Size = new System.Drawing.Size(93, 21);
             this.label3.TabIndex = 145;
             this.label3.Text = "Most Sales";
+            this.label3.Visible = false;
             // 
             // lblMostSales
             // 

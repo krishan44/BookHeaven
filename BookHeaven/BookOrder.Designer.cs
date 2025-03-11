@@ -324,7 +324,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "BookOrder";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "BookOrder";
+            this.Text = "Book Heaven || Book System";
             this.Load += new System.EventHandler(this.BookOrder_Load);
             ((System.ComponentModel.ISupportInitialize)(this.gridViewSupplier)).EndInit();
             this.ResumeLayout(false);

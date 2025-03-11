@@ -128,6 +128,7 @@
             // 
             // picCover
             // 
+            this.picCover.BackColor = System.Drawing.Color.Transparent;
             this.picCover.Location = new System.Drawing.Point(435, 116);
             this.picCover.Name = "picCover";
             this.picCover.Size = new System.Drawing.Size(145, 151);
