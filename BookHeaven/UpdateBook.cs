@@ -291,18 +291,19 @@ namespace BookHeaven
 
                     string selectedBookId = cmbBookId.SelectedItem.ToString();
                     string updateQuery = @"
-                UPDATE BooksTable
-                SET
-                    Title = @Title,
-                    Author = @Author,
-                    Genre = @Genre,
-                    ISBN = @ISBN,
-                    Price = @Price,
-                    StockQuantity = @StockQuantity,
-                    SupplierID = @SupplierID,
-                    BookImage = @BookImage
-                WHERE
-                    BookId = @BookId";
+        UPDATE BooksTable
+        SET
+            Title = @Title,
+            Author = @Author,
+            Genre = @Genre,
+            ISBN = @ISBN,
+            Price = @Price,
+            StockQuantity = @StockQuantity,
+            SupplierID = @SupplierID,
+            BookImage = @BookImage,
+            Discount = @Discount
+        WHERE
+            BookId = @BookId";
 
                     using (SqlCommand command = new SqlCommand(updateQuery, conn))
                     {
@@ -314,6 +315,7 @@ namespace BookHeaven
                         command.Parameters.AddWithValue("@Price", txtPrice.Text);
                         command.Parameters.AddWithValue("@StockQuantity", txtStock.Text);
                         command.Parameters.AddWithValue("@SupplierID", cmbSupId.SelectedItem.ToString());
+                        command.Parameters.AddWithValue("@Discount", txtDiscount.Text); // Added discount parameter
 
                         if (picCover.Image != null)
                         {
@@ -330,7 +332,7 @@ namespace BookHeaven
                         {
                             MessageBox.Show("Book updated successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             ClearFields();
-                            btnUploadCover.Location = new Point(btnUploadCover.Location.X, btnUploadCover.Location.Y -140);
+                            btnUploadCover.Location = new Point(btnUploadCover.Location.X, btnUploadCover.Location.Y - 140);
                         }
                         else
                         {
