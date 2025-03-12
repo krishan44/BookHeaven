@@ -1,5 +1,4 @@
-﻿
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -45,7 +44,7 @@ namespace BookHeaven
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
                     conn.Open();
-                    string query = "SELECT StaffID FROM StaffTable";
+                    string query = "SELECT StaffID FROM StaffTable WHERE UserID IS NULL"; // Only load StaffIDs with no UserID
                     using (SqlCommand command = new SqlCommand(query, conn))
                     using (SqlDataReader reader = command.ExecuteReader())
                     {
@@ -162,6 +161,7 @@ namespace BookHeaven
                                     {
                                         MessageBox.Show("User and Staff record updated successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                         ClearFields();
+                                        LoadStaffIDs(); //Reload Staff IDs to update combobox
                                     }
                                     else
                                     {
