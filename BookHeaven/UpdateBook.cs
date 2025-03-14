@@ -99,7 +99,7 @@ namespace BookHeaven
                 {
                     conn.Open();
                     string selectedBookId = cmbBookId.SelectedItem.ToString();
-                    string query = "SELECT Title, Author, Genre, ISBN, Price, StockQuantity, SupplierID, BookImage FROM BooksTable WHERE BookId = @BookId";
+                    string query = "SELECT Title, Author, Genre, ISBN, Price, StockQuantity, SupplierID,Discount, BookImage FROM BooksTable WHERE BookId = @BookId";
                     SqlCommand command = new SqlCommand(query, conn);
                     command.Parameters.AddWithValue("@BookId", selectedBookId);
                     SqlDataReader reader = command.ExecuteReader();
@@ -121,6 +121,25 @@ namespace BookHeaven
                         txtISBN.Text = reader["ISBN"].ToString();
                         txtPrice.Text = reader["Price"].ToString();
                         txtStock.Text = reader["StockQuantity"].ToString();
+
+                        if (reader["Discount"] != DBNull.Value)
+                        {
+                            string discountString = reader["Discount"].ToString();
+                            if (decimal.TryParse(discountString, out decimal discountValue))
+                            {
+                                txtDiscount.Text = discountValue.ToString();
+                            }
+                            else
+                            {
+                                MessageBox.Show("Invalid discount value in the database.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                txtDiscount.Text = "";
+                            }
+                        }
+                        else
+                        {
+                            txtDiscount.Text = "";
+                        }
+                       
 
                         if (reader["SupplierID"] != DBNull.Value)
                         {
@@ -188,6 +207,7 @@ namespace BookHeaven
             picCover.Image = null;
             btnUploadCover.Location = new Point(btnUploadCover.Location.X, btnUploadCover.Location.Y);
             isImageUploaded = false;
+            txtDiscount.Clear();
         }
 
         public Image ByteArrayToImage(byte[] byteArrayIn)
@@ -291,19 +311,19 @@ namespace BookHeaven
 
                     string selectedBookId = cmbBookId.SelectedItem.ToString();
                     string updateQuery = @"
-        UPDATE BooksTable
-        SET
-            Title = @Title,
-            Author = @Author,
-            Genre = @Genre,
-            ISBN = @ISBN,
-            Price = @Price,
-            StockQuantity = @StockQuantity,
-            SupplierID = @SupplierID,
-            BookImage = @BookImage,
-            Discount = @Discount
-        WHERE
-            BookId = @BookId";
+                            UPDATE BooksTable
+                            SET
+                                Title = @Title,
+                                Author = @Author,
+                                Genre = @Genre,
+                                ISBN = @ISBN,
+                                Price = @Price,
+                                StockQuantity = @StockQuantity,
+                                SupplierID = @SupplierID,
+                                BookImage = @BookImage,
+                                Discount = @Discount
+                            WHERE
+                                BookId = @BookId";
 
                     using (SqlCommand command = new SqlCommand(updateQuery, conn))
                     {
@@ -315,7 +335,7 @@ namespace BookHeaven
                         command.Parameters.AddWithValue("@Price", txtPrice.Text);
                         command.Parameters.AddWithValue("@StockQuantity", txtStock.Text);
                         command.Parameters.AddWithValue("@SupplierID", cmbSupId.SelectedItem.ToString());
-                        command.Parameters.AddWithValue("@Discount", txtDiscount.Text); // Added discount parameter
+                        command.Parameters.AddWithValue("@Discount", txtDiscount.Text); 
 
                         if (picCover.Image != null)
                         {

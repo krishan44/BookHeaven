@@ -54,7 +54,9 @@ namespace BookHeaven
 
         private void btnLogOut_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+            Login login = new Login();
+            login.Show();
+            this.Hide();
         }
 
         private void button5_Click(object sender, EventArgs e)
